@@ -3,90 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MF Analysis Dashboard — ICICI</title>
+<title>MF Analysis Dashboard</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f2f7;color:#1a1a2e;min-height:100vh;padding:0}
-
-/* ── Top header bar ── */
-.header-bar{background:#002D62;padding:10px 24px;display:flex;align-items:center;gap:14px;box-shadow:0 2px 8px rgba(0,45,98,0.3)}
-.header-bar .logo-block{display:flex;align-items:center;gap:10px}
-.logo-icon{width:36px;height:36px;background:#F47920;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#fff;letter-spacing:-0.5px;flex-shrink:0}
-.header-bar .brand{color:#fff;font-size:15px;font-weight:700;letter-spacing:0.01em}
-.header-bar .brand-sub{color:#99b4d8;font-size:11px;margin-top:1px}
-.header-divider{width:1px;height:30px;background:#1e4a85;margin:0 6px}
-.header-title{color:#fff;font-size:18px;font-weight:600}
-.header-sub{color:#99b4d8;font-size:12px;margin-top:1px}
-
-.dash{max-width:1200px;margin:0 auto;padding:1.5rem}
-
-/* ── Topbar filters ── */
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f4fb;color:#1a1a18;min-height:100vh;padding:1.5rem}
+.dash{max-width:1200px;margin:0 auto}
 .topbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:1.5rem}
+.topbar h1{font-size:20px;font-weight:600;color:#002D62}
+.topbar .sub{font-size:13px;color:#6b6b67;display:block;margin-bottom:2px}
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
-.filters select{font-size:12px;padding:6px 12px;border-radius:6px;border:1px solid #c2cfe0;background:#fff;color:#002D62;cursor:pointer;outline:none;font-weight:500}
+.filters select{font-size:12px;padding:6px 10px;border-radius:8px;border:0.5px solid #c0bfb8;background:#fff;color:#1a1a18;cursor:pointer;outline:none}
 .filters select:hover{border-color:#F47920}
-.filters select:focus{border-color:#F47920;box-shadow:0 0 0 2px rgba(244,121,32,0.15)}
-
-/* ── KPI cards ── */
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:1.5rem}
-.kpi{background:#fff;border-radius:10px;padding:16px 18px;border-top:3px solid #F47920;box-shadow:0 1px 6px rgba(0,45,98,0.08)}
-.kpi .lbl{font-size:11px;color:#6b7a9a;margin-bottom:6px;font-weight:500;text-transform:uppercase;letter-spacing:0.04em}
-.kpi .val{font-size:26px;font-weight:700;color:#002D62}
-.kpi .sub2{font-size:11px;color:#8a96b0;margin-top:3px}
-
-/* ── Cards ── */
+.kpi{background:#fff3e8;border-radius:8px;padding:14px 16px}
+.kpi .lbl{font-size:12px;color:#6b6b67;margin-bottom:4px}
+.kpi .val{font-size:24px;font-weight:600;color:#002D62}
+.kpi .sub2{font-size:11px;color:#6b6b67;margin-top:2px}
 .section{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
 .section.wide{grid-template-columns:1fr}
-.card{background:#fff;border:1px solid #dbe4f0;border-radius:10px;padding:1rem 1.25rem;box-shadow:0 1px 4px rgba(0,45,98,0.06)}
-.card h3{font-size:11px;font-weight:700;color:#002D62;margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.06em;border-bottom:1.5px solid #f0f4fb;padding-bottom:8px}
-
-/* ── Legend ── */
-.legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:8px;font-size:11px;color:#6b7a9a}
+.card{background:#fff;border:0.5px solid #c5d3e8;border-radius:12px;padding:1rem 1.25rem}
+.card h3{font-size:11px;font-weight:600;color:#002D62;margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.05em}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:8px;font-size:11px;color:#6b6b67}
 .leg-dot{width:9px;height:9px;border-radius:2px;display:inline-block;margin-right:4px;vertical-align:middle}
-
-/* ── Table ── */
 table.ft{width:100%;border-collapse:collapse;font-size:12px}
-table.ft th{text-align:left;padding:8px 8px;font-weight:700;color:#002D62;border-bottom:2px solid #dbe4f0;font-size:11px;white-space:nowrap;background:#f5f8fd;text-transform:uppercase;letter-spacing:0.04em}
-table.ft td{padding:7px 8px;border-bottom:0.5px solid #edf1f9;color:#1a1a2e}
+table.ft th{text-align:left;padding:6px 8px;font-weight:600;color:#002D62;border-bottom:0.5px solid #c5d3e8;font-size:11px;white-space:nowrap}
+table.ft td{padding:6px 8px;border-bottom:0.5px solid #e8eef6;color:#002D62}
 table.ft tr:last-child td{border-bottom:none}
-table.ft tr:hover td{background:#fdf4ec}
-
-/* ── Score bar ── */
+table.ft tr:hover td{background:#f0f4fb}
 .score-bar{display:flex;align-items:center;gap:6px}
-.bar-track{flex:1;height:5px;background:#e5eaf4;border-radius:4px;overflow:hidden;min-width:60px}
+.bar-track{flex:1;height:5px;background:#dbe6f5;border-radius:4px;overflow:hidden;min-width:60px}
 .bar-fill{height:100%;border-radius:4px}
-
-/* ── Tabs ── */
-.tab-row{display:flex;gap:6px;margin-bottom:1rem;flex-wrap:wrap}
-.tab{font-size:12px;padding:5px 14px;border-radius:20px;border:1px solid #c2cfe0;cursor:pointer;color:#6b7a9a;background:transparent;font-weight:500;transition:all 0.15s}
-.tab:hover{background:#fff5ec;border-color:#F47920;color:#F47920}
-.tab.active{background:#F47920;color:#fff;font-weight:700;border-color:#F47920}
-
-/* ── Fund type badges ── */
-.badge-passive{font-size:10px;padding:2px 7px;border-radius:20px;background:#e8f0fd;color:#002D62;font-weight:600}
-.badge-active{font-size:10px;padding:2px 7px;border-radius:20px;background:#fff3e8;color:#c45d00;font-weight:600}
-
+.tab-row{display:flex;gap:4px;margin-bottom:1rem;flex-wrap:wrap}
+.tab{font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid #c0bfb8;cursor:pointer;color:#6b6b67;background:transparent}
+.tab:hover{background:#f0f4fb}
+.tab.active{background:#edecea;color:#1a1a18;font-weight:600;border-color:#F47920}
 @media(max-width:700px){.kpis{grid-template-columns:1fr 1fr}.section{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
-<!-- ICICI-style header -->
-<div class="header-bar">
-      <div class="logo-block">
-            <div>
-      <div class="brand">Performance Comparison Dashboard</div>
-    </div>
-  </div>
-  <div class="header-divider"></div>
-  <div>
-    <div class="header-title">Active Mutual Funds v/s Passive ETFs</div>
-  </div>
-</div>
-
 <div class="dash">
 <div class="topbar">
-  <div class="filters" style="margin-left:auto">
+  <div>
+    <span class="sub">Peroformance Comparison Dashboard</span>
+    <h1>Actively Managed Funds vs Passively managed ETFs</h1>
+  </div>
+  <div class="filters">
     <select id="assetFilter" onchange="render()">
       <option value="All">All asset classes</option>
       <option value="Equity">Equity</option>
@@ -129,7 +90,7 @@ table.ft tr:hover td{background:#fdf4ec}
 </div>
 
 <div class="card section wide" style="margin-bottom:1rem">
-  <h3>Fund scorecard <span id="tableCount" style="font-weight:400;color:#8a96b0;text-transform:none;letter-spacing:0"></span></h3>
+  <h3>Fund scorecard <span id="tableCount" style="font-weight:400;color:#6b6b67;text-transform:none;letter-spacing:0"></span></h3>
   <div class="tab-row">
     <div class="tab active" onclick="setTab('all',this)">All</div>
     <div class="tab" onclick="setTab('Equity',this)">Equity</div>
@@ -155,22 +116,48 @@ const raw = [
   {id:"E1_B",stratum:"E1",assetClass:"Equity",subType:"Large Cap",name:"Canara Rob Large Cap",amc:"Canara Robeco",type:"Active",composite:8.19,perf:7.68,risk:8.60,cost:10,ops:6.94,ret5:17.9,sharpe:0.89,dd:-24.1,aum:10200,ter:0.44},
   {id:"E2_A",stratum:"E2",assetClass:"Equity",subType:"Large & Mid Cap",name:"Mirae Asset Large & Mid",amc:"Mirae Asset",type:"Active",composite:5.91,perf:5.97,risk:4.23,cost:10,ops:5.02,ret5:19.2,sharpe:0.81,dd:-31.2,aum:32100,ter:0.61},
   {id:"E2_B",stratum:"E2",assetClass:"Equity",subType:"Large & Mid Cap",name:"Kotak Equity Opp",amc:"Kotak MF",type:"Active",composite:6.35,perf:5.60,risk:4.79,cost:10,ops:7.80,ret5:18.1,sharpe:0.79,dd:-29.8,aum:19800,ter:0.50},
-  {id:"E3_A",stratum:"E3",assetClass:"Equity",subType:"Flexi Cap",name:"Parag Parikh Flexi Cap",amc:"PPFAS MF",type:"Active",composite:8.47,perf:7.89,risk:8.12,cost:9.23,ops:8.65,ret5:21.4,sharpe:0.94,dd:-22.8,aum:61200,ter:0.58},
-  {id:"E3_B",stratum:"E3",assetClass:"Equity",subType:"Flexi Cap",name:"HDFC Flexi Cap",amc:"HDFC MF",type:"Active",composite:7.84,perf:7.12,risk:7.34,cost:9.23,ops:8.65,ret5:20.8,sharpe:0.87,dd:-25.4,aum:48700,ter:0.77},
-  {id:"E4_A",stratum:"E4",assetClass:"Equity",subType:"Mid Cap",name:"Nippon India Mid Cap",amc:"Nippon India",type:"Active",composite:6.78,perf:7.24,risk:5.81,cost:7.69,ops:6.33,ret5:24.6,sharpe:0.83,dd:-38.2,aum:28400,ter:0.70},
-  {id:"E4_B",stratum:"E4",assetClass:"Equity",subType:"Mid Cap",name:"Kotak Emerging Equity",amc:"Kotak MF",type:"Active",composite:7.23,perf:7.56,risk:6.12,cost:7.69,ops:7.54,ret5:25.1,sharpe:0.86,dd:-36.4,aum:41300,ter:0.47},
-  {id:"E5_A",stratum:"E5",assetClass:"Equity",subType:"Small Cap",name:"Quant Small Cap",amc:"Quant MF",type:"Active",composite:5.44,perf:8.34,risk:3.22,cost:6.15,ops:4.08,ret5:29.4,sharpe:0.78,dd:-52.6,aum:20100,ter:0.62},
-  {id:"E5_B",stratum:"E5",assetClass:"Equity",subType:"Small Cap",name:"Nippon India Small Cap",amc:"Nippon India",type:"Active",composite:7.02,perf:7.91,risk:5.67,cost:6.15,ops:7.35,ret5:27.8,sharpe:0.81,dd:-48.2,aum:51800,ter:0.70},
-  {id:"D1_A",stratum:"D1",assetClass:"Debt",subType:"Liquid",name:"HDFC Liquid Fund",amc:"HDFC MF",type:"Active",composite:8.34,perf:7.92,risk:9.21,cost:8.46,ops:7.78,ret5:6.02,sharpe:2.14,dd:-0.4,aum:64200,ter:0.20},
-  {id:"D1_B",stratum:"D1",assetClass:"Debt",subType:"Liquid",name:"ICICI Pru Liquid Fund",amc:"ICICI Pru",type:"Active",composite:8.56,perf:8.12,risk:9.34,cost:8.46,ops:8.31,ret5:6.08,sharpe:2.18,dd:-0.3,aum:58400,ter:0.20},
-  {id:"D2_A",stratum:"D2",assetClass:"Debt",subType:"Short Duration",name:"HDFC Short Duration",amc:"HDFC MF",type:"Active",composite:7.68,perf:7.34,risk:7.89,cost:7.69,ops:7.80,ret5:7.14,sharpe:1.72,dd:-3.2,aum:22100,ter:0.36},
-  {id:"D2_B",stratum:"D2",assetClass:"Debt",subType:"Short Duration",name:"Axis Short Duration",amc:"Axis MF",type:"Active",composite:7.12,perf:6.89,risk:7.34,cost:7.69,ops:6.56,ret5:6.98,sharpe:1.68,dd:-3.8,aum:8700,ter:0.40},
-  {id:"D3_A",stratum:"D3",assetClass:"Debt",subType:"Gilt",name:"SBI Magnum Gilt Fund",amc:"SBI MF",type:"Active",composite:6.89,perf:6.78,risk:5.34,cost:9.23,ops:5.36,ret5:8.34,sharpe:1.34,dd:-12.4,aum:9800,ter:0.46},
-  {id:"D3_B",stratum:"D3",assetClass:"Debt",subType:"Gilt",name:"ICICI Pru Gilt Fund",amc:"ICICI Pru",type:"Active",composite:7.34,perf:7.12,risk:5.89,cost:9.23,ops:6.12,ret5:8.62,sharpe:1.42,dd:-11.8,aum:4600,ter:0.46},
-  {id:"H1_A",stratum:"H1",assetClass:"Hybrid",subType:"Aggressive Hybrid",name:"ICICI Pru Equity & Debt",amc:"ICICI Pru",type:"Active",composite:8.12,perf:7.68,risk:7.89,cost:8.46,ops:8.34,ret5:16.8,sharpe:0.94,dd:-26.4,aum:32400,ter:0.99},
-  {id:"H1_B",stratum:"H1",assetClass:"Hybrid",subType:"Aggressive Hybrid",name:"Kotak Equity Hybrid",amc:"Kotak MF",type:"Active",composite:7.45,perf:6.89,risk:7.12,cost:8.46,ops:7.33,ret5:15.9,sharpe:0.88,dd:-28.1,aum:8900,ter:1.56},
-  {id:"H2_A",stratum:"H2",assetClass:"Hybrid",subType:"Balanced Advantage",name:"HDFC Balanced Advantage",amc:"HDFC MF",type:"Active",composite:7.89,perf:7.34,risk:8.12,cost:7.69,ops:8.10,ret5:14.6,sharpe:0.96,dd:-19.8,aum:86200,ter:0.77},
-  {id:"H2_B",stratum:"H2",assetClass:"Hybrid",subType:"Balanced Advantage",name:"ICICI Pru Balanced Adv",amc:"ICICI Pru",type:"Active",composite:8.23,perf:7.78,risk:8.67,cost:7.69,ops:8.77,ret5:14.2,sharpe:1.02,dd:-17.4,aum:54700,ter:0.77},
+  {id:"E3_A",stratum:"E3",assetClass:"Equity",subType:"Multi Cap",name:"Nippon India Multi Cap",amc:"Nippon India",type:"Active",composite:7.48,perf:7.71,risk:5.63,cost:10,ops:8.04,ret5:20.4,sharpe:0.76,dd:-33.8,aum:31200,ter:0.73},
+  {id:"E3_B",stratum:"E3",assetClass:"Equity",subType:"Multi Cap",name:"HDFC Multi Cap",amc:"HDFC MF",type:"Active",composite:5.04,perf:4.31,risk:3.98,cost:10,ops:4.12,ret5:18.2,sharpe:0.68,dd:-35.1,aum:14600,ter:0.78},
+  {id:"E4_A",stratum:"E4",assetClass:"Equity",subType:"Flexi Cap",name:"Parag Parikh Flexi Cap",amc:"PPFAS MF",type:"Active",composite:9.26,perf:8.89,risk:10.0,cost:10,ops:8.06,ret5:21.8,sharpe:1.04,dd:-23.6,aum:72800,ter:0.63},
+  {id:"E4_B",stratum:"E4",assetClass:"Equity",subType:"Flexi Cap",name:"HDFC Flexi Cap",amc:"HDFC MF",type:"Active",composite:4.86,perf:4.02,risk:3.91,cost:10,ops:3.86,ret5:19.1,sharpe:0.74,dd:-32.4,aum:61400,ter:0.81},
+  {id:"E5_A",stratum:"E5",assetClass:"Equity",subType:"Mid Cap",name:"Kotak Emerging Equity",amc:"Kotak MF",type:"Active",composite:7.94,perf:8.44,risk:6.23,cost:10,ops:7.96,ret5:26.8,sharpe:0.84,dd:-38.4,aum:47900,ter:0.42},
+  {id:"E5_B",stratum:"E5",assetClass:"Equity",subType:"Mid Cap",name:"Nippon India Growth",amc:"Nippon India",type:"Active",composite:6.27,perf:6.02,risk:3.98,cost:10,ops:7.78,ret5:24.1,sharpe:0.72,dd:-40.2,aum:24600,ter:0.83},
+  {id:"E6_A",stratum:"E6",assetClass:"Equity",subType:"Small Cap",name:"SBI Small Cap",amc:"SBI MF",type:"Active",composite:6.34,perf:6.10,risk:4.16,cost:10,ops:7.70,ret5:29.8,sharpe:0.74,dd:-44.8,aum:27800,ter:0.65},
+  {id:"E6_B",stratum:"E6",assetClass:"Equity",subType:"Small Cap",name:"Nippon India Small Cap",amc:"Nippon India",type:"Active",composite:7.76,perf:8.88,risk:5.60,cost:10,ops:6.84,ret5:32.4,sharpe:0.88,dd:-46.2,aum:55200,ter:0.74},
+  {id:"E7_A",stratum:"E7",assetClass:"Equity",subType:"ELSS",name:"Mirae Asset ELSS",amc:"Mirae Asset",type:"Active",composite:6.50,perf:7.13,risk:4.63,cost:10,ops:5.02,ret5:19.6,sharpe:0.78,dd:-30.2,aum:22700,ter:0.52},
+  {id:"E7_B",stratum:"E7",assetClass:"Equity",subType:"ELSS",name:"Canara Rob ELSS",amc:"Canara Robeco",type:"Active",composite:8.24,perf:9.17,risk:6.82,cost:10,ops:6.86,ret5:20.4,sharpe:0.86,dd:-27.8,aum:6700,ter:0.55},
+  {id:"E8_A",stratum:"E8",assetClass:"Equity",subType:"Contra/Value",name:"SBI Contra Fund",amc:"SBI MF",type:"Active",composite:7.48,perf:8.03,risk:6.00,cost:10,ops:6.47,ret5:24.2,sharpe:0.82,dd:-36.4,aum:38100,ter:0.62},
+  {id:"E8_B",stratum:"E8",assetClass:"Equity",subType:"Contra/Value",name:"Nippon India Value",amc:"Nippon India",type:"Active",composite:4.99,perf:4.53,risk:3.52,cost:10,ops:4.12,ret5:21.4,sharpe:0.68,dd:-38.2,aum:7900,ter:0.84},
+  {id:"E9_A",stratum:"E9",assetClass:"Equity",subType:"Dividend Yield",name:"HDFC Dividend Yield",amc:"HDFC MF",type:"Active",composite:6.25,perf:6.39,risk:5.22,cost:10,ops:4.20,ret5:16.2,sharpe:0.74,dd:-26.4,aum:5400,ter:0.68},
+  {id:"E9_B",stratum:"E9",assetClass:"Equity",subType:"Dividend Yield",name:"UTI Dividend Yield",amc:"UTI MF",type:"Active",composite:6.92,perf:8.17,risk:4.66,cost:10,ops:5.04,ret5:17.6,sharpe:0.78,dd:-28.1,aum:3800,ter:0.77},
+  {id:"E10_A",stratum:"E10",assetClass:"Equity",subType:"Focused",name:"SBI Focused Equity",amc:"SBI MF",type:"Active",composite:6.58,perf:6.68,risk:4.85,cost:10,ops:6.35,ret5:20.1,sharpe:0.76,dd:-32.1,aum:34600,ter:0.64},
+  {id:"E10_B",stratum:"E10",assetClass:"Equity",subType:"Focused",name:"Mirae Asset Focused",amc:"Mirae Asset",type:"Active",composite:7.69,perf:8.34,risk:6.96,cost:10,ops:5.10,ret5:21.4,sharpe:0.84,dd:-29.6,aum:9100,ter:0.55},
+  {id:"D1_A",stratum:"D1",assetClass:"Debt",subType:"Overnight",name:"HDFC Overnight",amc:"HDFC MF",type:"Active",composite:6.59,perf:6.13,risk:5.77,cost:10,ops:6.03,ret5:5.98,sharpe:5.12,dd:-0.4,aum:16200,ter:0.10},
+  {id:"D1_B",stratum:"D1",assetClass:"Debt",subType:"Overnight",name:"SBI Overnight",amc:"SBI MF",type:"Active",composite:7.33,perf:7.07,risk:6.88,cost:10,ops:6.25,ret5:6.01,sharpe:5.44,dd:-0.3,aum:14100,ter:0.08},
+  {id:"D2_A",stratum:"D2",assetClass:"Debt",subType:"Liquid",name:"SBI Liquid Fund",amc:"SBI MF",type:"Active",composite:6.35,perf:6.13,risk:4.76,cost:10,ops:6.46,ret5:6.34,sharpe:4.98,dd:-0.8,aum:72400,ter:0.20},
+  {id:"D2_B",stratum:"D2",assetClass:"Debt",subType:"Liquid",name:"HDFC Liquid Fund",amc:"HDFC MF",type:"Active",composite:7.16,perf:7.07,risk:6.08,cost:10,ops:6.75,ret5:6.38,sharpe:5.14,dd:-0.6,aum:68900,ter:0.21},
+  {id:"D3_A",stratum:"D3",assetClass:"Debt",subType:"Ultra Short",name:"HDFC Ultra Short Term",amc:"HDFC MF",type:"Active",composite:6.32,perf:6.40,risk:4.41,cost:10,ops:6.25,ret5:6.58,sharpe:4.24,dd:-1.2,aum:15600,ter:0.30},
+  {id:"D3_B",stratum:"D3",assetClass:"Debt",subType:"Ultra Short",name:"Axis Ultra Short Term",amc:"Axis MF",type:"Active",composite:7.30,perf:7.87,risk:5.70,cost:10,ops:6.25,ret5:6.62,sharpe:4.48,dd:-0.9,aum:8700,ter:0.29},
+  {id:"D4_A",stratum:"D4",assetClass:"Debt",subType:"Short Duration",name:"HDFC Short Term Debt",amc:"HDFC MF",type:"Active",composite:6.53,perf:6.39,risk:4.83,cost:10,ops:6.82,ret5:6.84,sharpe:3.84,dd:-2.4,aum:15800,ter:0.31},
+  {id:"D4_B",stratum:"D4",assetClass:"Debt",subType:"Short Duration",name:"Kotak Bond Short Term",amc:"Kotak MF",type:"Active",composite:7.12,perf:7.12,risk:5.38,cost:10,ops:7.74,ret5:6.88,sharpe:3.94,dd:-2.2,aum:16200,ter:0.32},
+  {id:"D5_A",stratum:"D5",assetClass:"Debt",subType:"Medium Duration",name:"Kotak Medium Term",amc:"Kotak MF",type:"Active",composite:6.28,perf:5.36,risk:5.01,cost:10,ops:7.57,ret5:6.98,sharpe:2.84,dd:-4.8,aum:1800,ter:0.59},
+  {id:"D5_B",stratum:"D5",assetClass:"Debt",subType:"Medium Duration",name:"HDFC Medium Term Debt",amc:"HDFC MF",type:"Active",composite:6.73,perf:6.16,risk:5.64,cost:10,ops:7.12,ret5:7.12,sharpe:3.02,dd:-4.2,aum:3200,ter:0.58},
+  {id:"D6_A",stratum:"D6",assetClass:"Debt",subType:"Long Duration",name:"ICICI Pru Long Term Bond",amc:"ICICI Prudential",type:"Active",composite:6.11,perf:5.43,risk:5.22,cost:10,ops:6.10,ret5:7.42,sharpe:1.68,dd:-8.4,aum:1100,ter:0.52},
+  {id:"D6_B",stratum:"D6",assetClass:"Debt",subType:"Long Duration",name:"SBI Magnum Long Duration",amc:"SBI MF",type:"Active",composite:6.63,perf:6.14,risk:5.71,cost:10,ops:6.08,ret5:7.68,sharpe:1.82,dd:-7.2,aum:1600,ter:0.47},
+  {id:"D7_A",stratum:"D7",assetClass:"Debt",subType:"Corporate Bond",name:"Kotak Corporate Bond",amc:"Kotak MF",type:"Active",composite:6.78,perf:6.54,risk:5.40,cost:10,ops:6.62,ret5:7.28,sharpe:3.42,dd:-2.8,aum:12400,ter:0.34},
+  {id:"D7_B",stratum:"D7",assetClass:"Debt",subType:"Corporate Bond",name:"HDFC Corporate Bond",amc:"HDFC MF",type:"Active",composite:7.23,perf:7.36,risk:6.24,cost:10,ops:6.48,ret5:7.54,sharpe:3.64,dd:-2.4,aum:29800,ter:0.32},
+  {id:"D8_A",stratum:"D8",assetClass:"Debt",subType:"Credit Risk",name:"HDFC Credit Risk",amc:"HDFC MF",type:"Active",composite:6.11,perf:5.84,risk:4.48,cost:10,ops:5.52,ret5:6.92,sharpe:2.22,dd:-6.4,aum:7600,ter:0.75},
+  {id:"D8_B",stratum:"D8",assetClass:"Debt",subType:"Credit Risk",name:"SBI Credit Risk",amc:"SBI MF",type:"Active",composite:5.96,perf:5.60,risk:5.12,cost:10,ops:5.20,ret5:6.68,sharpe:2.04,dd:-7.2,aum:2900,ter:0.78},
+  {id:"D9_A",stratum:"D9",assetClass:"Debt",subType:"Gilt",name:"SBI Magnum Gilt",amc:"SBI MF",type:"Active",composite:5.98,perf:5.79,risk:4.24,cost:10,ops:5.52,ret5:7.82,sharpe:1.42,dd:-11.2,aum:10800,ter:0.46},
+  {id:"D9_B",stratum:"D9",assetClass:"Debt",subType:"Gilt",name:"HDFC Gilt Fund",amc:"HDFC MF",type:"Active",composite:6.57,perf:7.16,risk:5.02,cost:10,ops:5.20,ret5:8.04,sharpe:1.58,dd:-9.8,aum:3200,ter:0.44},
+  {id:"H1_A",stratum:"H1",assetClass:"Hybrid",subType:"Aggressive Hybrid",name:"HDFC Balanced Advantage",amc:"HDFC MF",type:"Active",composite:6.93,perf:8.04,risk:6.02,cost:10,ops:6.42,ret5:22.4,sharpe:0.92,dd:-26.4,aum:88700,ter:0.76},
+  {id:"H1_B",stratum:"H1",assetClass:"Hybrid",subType:"Aggressive Hybrid",name:"Canara Rob Equity Hybrid",amc:"Canara Robeco",type:"Active",composite:8.79,perf:8.91,risk:7.66,cost:10,ops:5.80,ret5:24.8,sharpe:1.04,dd:-22.2,aum:9800,ter:0.51},
+  {id:"H2_A",stratum:"H2",assetClass:"Hybrid",subType:"Conservative Hybrid",name:"HDFC Hybrid Debt",amc:"HDFC MF",type:"Active",composite:5.72,perf:5.52,risk:4.88,cost:10,ops:6.46,ret5:9.8,sharpe:1.92,dd:-8.4,aum:3700,ter:0.57},
+  {id:"H2_B",stratum:"H2",assetClass:"Hybrid",subType:"Conservative Hybrid",name:"Kotak Debt Hybrid",amc:"Kotak MF",type:"Active",composite:7.09,perf:6.36,risk:5.52,cost:10,ops:6.46,ret5:10.4,sharpe:2.08,dd:-7.2,aum:2100,ter:0.52},
+  {id:"H3_A",stratum:"H3",assetClass:"Hybrid",subType:"Balanced Advantage",name:"ICICI Pru Balanced Adv",amc:"ICICI Prudential",type:"Active",composite:6.48,perf:7.08,risk:5.88,cost:10,ops:6.08,ret5:18.2,sharpe:1.02,dd:-20.4,aum:54200,ter:0.68},
+  {id:"H3_B",stratum:"H3",assetClass:"Hybrid",subType:"Balanced Advantage",name:"Edelweiss Balanced Adv",amc:"Edelweiss MF",type:"Active",composite:8.07,perf:7.93,risk:6.51,cost:10,ops:6.09,ret5:19.8,sharpe:1.14,dd:-16.8,aum:10600,ter:0.44},
+  {id:"H4_A",stratum:"H4",assetClass:"Hybrid",subType:"Arbitrage",name:"Nippon India Arbitrage",amc:"Nippon India",type:"Active",composite:6.46,perf:7.12,risk:5.02,cost:10,ops:5.92,ret5:7.82,sharpe:3.12,dd:-1.8,aum:17300,ter:0.26},
+  {id:"H4_B",stratum:"H4",assetClass:"Hybrid",subType:"Arbitrage",name:"HDFC Arbitrage",amc:"HDFC MF",type:"Active",composite:7.48,perf:7.82,risk:5.64,cost:10,ops:5.86,ret5:8.02,sharpe:3.28,dd:-1.4,aum:15200,ter:0.29},
   {id:"P1_A",stratum:"P1",assetClass:"Passive",subType:"Large Cap ETF",name:"Nippon India ETF Nifty 50",amc:"Nippon India",type:"Passive",composite:7.07,perf:6.24,risk:4.82,cost:9.92,ops:6.36,ret5:14.8,sharpe:0.74,dd:-28.4,aum:26400,ter:0.04},
   {id:"P1_B",stratum:"P1",assetClass:"Passive",subType:"Large Cap ETF",name:"HDFC Nifty 50 ETF",amc:"HDFC MF",type:"Passive",composite:7.26,perf:6.89,risk:5.13,cost:9.69,ops:6.35,ret5:14.6,sharpe:0.76,dd:-27.8,aum:19700,ter:0.05},
   {id:"P2_A",stratum:"P2",assetClass:"Passive",subType:"Broad Market ETF",name:"Motilal Nifty 500 ETF",amc:"Motilal Oswal",type:"Passive",composite:7.04,perf:6.84,risk:4.42,cost:4.54,ops:5.32,ret5:16.2,sharpe:0.72,dd:-32.4,aum:4200,ter:0.19},
@@ -196,12 +183,8 @@ function getFiltered(){
   return d;
 }
 
-// ICICI palette for score colors: orange accent, navy, amber, red
-function scoreColor(v){if(v>=8)return'#005B2E';if(v>=6.5)return'#002D62';if(v>=5)return'#C45D00';return'#B82020';}
-function barColor(v){if(v>=8)return'#1D8348';if(v>=6.5)return'#F47920';if(v>=5)return'#E8A020';return'#E24B4A';}
-
-// ICICI chart palette
-const clrMap={Equity:'#F47920',Debt:'#002D62',Hybrid:'#1A9E75',Passive:'#8B5CF6'};
+function scoreColor(v){if(v>=8)return'#1A6B3A';if(v>=6.5)return'#002D62';if(v>=5)return'#C45D00';return'#A32D2D';}
+function barColor(v){if(v>=8)return'#27AE60';if(v>=6.5)return'#F47920';if(v>=5)return'#E8A020';return'#E24B4A';}
 
 function setTab(t,el){
   tabFilter=t;
@@ -216,26 +199,26 @@ function renderKPIs(data){
   const top=data.filter(f=>f.composite>=8).length;
   const avgRet=avg(data.map(f=>f.ret5));
   document.getElementById('kpis').innerHTML=`
-    <div class="kpi"><div class="lbl">Funds analysed</div><div class="val" style="color:#002D62">${data.length}</div><div class="sub2">across ${[...new Set(data.map(f=>f.assetClass))].length} asset classes</div></div>
+    <div class="kpi"><div class="lbl">Funds analysed</div><div class="val">${data.length}</div><div class="sub2">across ${[...new Set(data.map(f=>f.assetClass))].length} asset classes</div></div>
     <div class="kpi"><div class="lbl">Avg composite score</div><div class="val" style="color:${scoreColor(avgComp)}">${avgComp.toFixed(2)}</div><div class="sub2">out of 10</div></div>
-    <div class="kpi"><div class="lbl">Top-rated (score ≥ 8)</div><div class="val" style="color:#F47920">${top}</div><div class="sub2">${(top/data.length*100).toFixed(0)}% of universe</div></div>
-    <div class="kpi"><div class="lbl">Avg 5yr return</div><div class="val" style="color:#002D62">${avgRet.toFixed(1)}%</div><div class="sub2">median rolling returns</div></div>`;
+    <div class="kpi"><div class="lbl">Top-rated (score ≥ 8)</div><div class="val">${top}</div><div class="sub2">${(top/data.length*100).toFixed(0)}% of universe</div></div>
+    <div class="kpi"><div class="lbl">Avg 5yr return</div><div class="val">${avgRet.toFixed(1)}%</div><div class="sub2">median rolling returns</div></div>`;
 }
 
 function renderTable(data){
   document.getElementById('tableCount').textContent='— '+data.length+' funds';
   const rows=data.map(f=>`<tr>
-    <td style="max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500">${f.name}</td>
-    <td style="color:#6b7a9a;font-size:11px;white-space:nowrap">${f.amc}</td>
-    <td><span class="${f.type==='Passive'?'badge-passive':'badge-active'}">${f.type}</span></td>
-    <td><div class="score-bar"><div class="bar-track"><div class="bar-fill" style="width:${f.composite*10}%;background:${barColor(f.composite)}"></div></div><span style="font-size:12px;font-weight:700;color:${scoreColor(f.composite)};min-width:30px">${f.composite.toFixed(1)}</span></div></td>
+    <td style="max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${f.name}</td>
+    <td style="color:#6b6b67;font-size:11px;white-space:nowrap">${f.amc}</td>
+    <td><span style="font-size:10px;padding:2px 7px;border-radius:20px;background:${f.type==='Passive'?'#dbe6f5':'#fff3e8'};color:${f.type==='Passive'?'#002D62':'#C45D00'};font-weight:500">${f.type}</span></td>
+    <td><div class="score-bar"><div class="bar-track"><div class="bar-fill" style="width:${f.composite*10}%;background:${barColor(f.composite)}"></div></div><span style="font-size:12px;font-weight:600;color:${scoreColor(f.composite)};min-width:30px">${f.composite.toFixed(1)}</span></div></td>
     <td style="font-size:12px">${f.perf.toFixed(1)}</td>
     <td style="font-size:12px">${f.risk.toFixed(1)}</td>
     <td style="font-size:12px">${f.ops.toFixed(1)}</td>
-    <td style="font-weight:700;color:#002D62">${f.ret5.toFixed(1)}</td>
+    <td style="font-weight:600">${f.ret5.toFixed(1)}</td>
     <td>${f.sharpe.toFixed(2)}</td>
-    <td style="color:#B82020">${f.dd.toFixed(1)}</td>
-    <td style="font-size:11px;color:#6b7a9a;white-space:nowrap">${f.aum.toLocaleString('en-IN')}</td>
+    <td style="color:#A32D2D">${f.dd.toFixed(1)}</td>
+    <td style="font-size:11px;color:#6b6b67;white-space:nowrap">${f.aum.toLocaleString('en-IN')}</td>
     <td style="font-size:11px">${f.ter.toFixed(2)}</td>
   </tr>`).join('');
   document.getElementById('tableBody').innerHTML=rows;
@@ -243,6 +226,7 @@ function renderTable(data){
 
 function renderCharts(data){
   const classes=['Equity','Debt','Hybrid','Passive'];
+  const clrMap={Equity:'#F47920',Debt:'#002D62',Hybrid:'#1A9E75',Passive:'#8B5CF6'};
 
   if(charts.radar){charts.radar.destroy();}
   charts.radar=new Chart(document.getElementById('radarChart'),{type:'radar',data:{
@@ -252,7 +236,7 @@ function renderCharts(data){
       data:['composite','perf','risk','cost','ops'].map(k=>{const d=data.filter(f=>f.assetClass===c);return d.length?+(d.reduce((a,b)=>a+b[k],0)/d.length).toFixed(2):0}),
       borderColor:clrMap[c],backgroundColor:clrMap[c]+'22',borderWidth:1.5,pointRadius:2
     })).filter(d=>d.data[0]>0)
-  },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{font:{size:10},boxWidth:10,color:'#002D62'}}},scales:{r:{min:0,max:10,ticks:{stepSize:2,font:{size:9}},pointLabels:{font:{size:10},color:'#002D62'}}}}});
+  },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{font:{size:10},boxWidth:10}}},scales:{r:{min:0,max:10,ticks:{stepSize:2,font:{size:9}},pointLabels:{font:{size:10}}}}}});
 
   if(charts.dist){charts.dist.destroy();}
   const distByClass=classes.map(c=>{
@@ -278,7 +262,7 @@ function renderCharts(data){
     const b=data.find(f=>f.stratum===s&&f.id.endsWith('_B'));
     return+(a.composite-b.composite).toFixed(2);
   });
-  charts.delta=new Chart(document.getElementById('deltaChart'),{type:'bar',data:{labels:strataF,datasets:[{label:'A minus B delta',data:deltas,backgroundColor:deltas.map(v=>v>=0?'#F4792099':'#B8202099'),borderColor:deltas.map(v=>v>=0?'#C45D00':'#8B0000'),borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:9}}},y:{title:{display:true,text:'Score delta (A−B)',font:{size:10}},ticks:{font:{size:9}}}}}});
+  charts.delta=new Chart(document.getElementById('deltaChart'),{type:'bar',data:{labels:strataF,datasets:[{label:'A minus B delta',data:deltas,backgroundColor:deltas.map(v=>v>=0?'#F4792099':'#D85A3099'),borderColor:deltas.map(v=>v>=0?'#C45D00':'#993C1D'),borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:9}}},y:{title:{display:true,text:'Score delta (A−B)',font:{size:10}},ticks:{font:{size:9}}}}}});
 }
 
 function render(){
